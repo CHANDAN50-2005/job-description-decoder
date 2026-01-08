@@ -1,0 +1,102 @@
+/* Reset & base */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header p {
+  margin-top: 5px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Main layout */
+section {
+  width: 80%;
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+/* Inputs */
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+/* Output section */
+#output-section h3 {
+  margin-top: 25px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 5px;
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* Readiness states */
+#readiness p {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.ready {
+  color: green;
+}
+
+.partial {
+  color: #d97706;
+}
+
+.not-ready {
+  color: red;
+}
+
+/* Small text */
+small {
+  color: #6b7280;
+}
