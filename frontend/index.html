@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Description Decoder & Resume Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Job Description Decoder & Resume Analyzer</h1>
+    <p>Understand job requirements and check resume readiness using AI</p>
+  </header>
+
+  <hr>
+
+  <!-- INPUT SECTION -->
+  <section id="input-section">
+
+    <!-- Job Description Input -->
+    <div>
+      <h2>Paste Job Description</h2>
+      <textarea
+        id="jobDescription"
+        rows="10"
+        placeholder="Paste the job description here (from LinkedIn, Naukri, etc.)"
+      ></textarea>
+    </div>
+
+    <br>
+
+    <!-- Resume Upload -->
+    <div>
+      <h2>Upload Resume (PDF only)</h2>
+      <input type="file" id="resumeFile" accept=".pdf">
+      <p><small>Please upload a text-based PDF (not scanned images)</small></p>
+    </div>
+
+    <br>
+
+    <!-- Analyze Button -->
+    <button id="analyzeBtn">Analyze Job & Resume</button>
+
+  </section>
+
+  <hr>
+
+  <!-- OUTPUT SECTION (Initially Empty) -->
+  <section id="output-section">
+
+    <h2>Analysis Result</h2>
+
+    <!-- Role Overview -->
+    <div id="roleOverview">
+      <h3>Role Overview</h3>
+      <p></p>
+    </div>
+
+    <!-- Job Must-Have Skills -->
+    <div id="jobSkills">
+      <h3>Job Must-Have Skills</h3>
+      <ul></ul>
+    </div>
+
+    <!-- Resume Matching Skills -->
+    <div id="resumeSkills">
+      <h3>Skills Found in Resume</h3>
+      <ul></ul>
+    </div>
+
+    <!-- Missing Skills -->
+    <div id="missingSkills">
+      <h3>Missing Skills</h3>
+      <ul></ul>
+    </div>
+
+    <!-- Readiness -->
+    <div id="readiness">
+      <h3>Resume Readiness</h3>
+      <p></p>
+    </div>
+
+    <!-- AI Suggestions -->
+    <div id="suggestions">
+      <h3>AI Suggestions</h3>
+      <ul></ul>
+    </div>
+
+  </section>
+
+</body>
+</html>
