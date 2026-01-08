@@ -35,8 +35,15 @@
     <!-- Resume Upload -->
     <div>
       <h2>Upload Resume (PDF only)</h2>
-      <input type="file" id="resumeFile" accept=".pdf">
-      <p><small>Please upload a text-based PDF (not scanned images)</small></p>
+      <div class="file-upload">
+  <label class="file-label">
+    <span class="file-title">📄 Upload Resume (PDF)</span>
+    <span id="fileName" class="file-subtitle">No file selected</span>
+    <input type="file" id="resumeFile" accept=".pdf" hidden>
+  </label>
+</div>
+
+
     </div>
 
     <br>
@@ -52,6 +59,8 @@
   <section id="output-section">
 
     <h2>Analysis Result</h2>
+
+    <h3 id="matchPercentage"></h3>
 
     <!-- Role Overview -->
     <div id="roleOverview">

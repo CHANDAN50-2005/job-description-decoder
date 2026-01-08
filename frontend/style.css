@@ -1,102 +1,212 @@
-/* Reset & base */
+/* -------- RESET & BASE -------- */
 * {
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #f4f6f8;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f6f9;
   color: #333;
+  line-height: 1.65;
+  font-size: 16px;   /* 👈 ADD THIS */
 }
 
-/* Header */
+
+/* -------- HEADER -------- */
 header {
-  background-color: #1f2937;
-  color: white;
-  padding: 20px;
+  background: #111827;
+  color: #fff;
+  padding: 30px 20px;
   text-align: center;
 }
 
+header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
 header p {
-  margin-top: 5px;
   font-size: 14px;
   opacity: 0.9;
 }
 
-/* Main layout */
+/* -------- SECTIONS -------- */
 section {
-  width: 80%;
   max-width: 900px;
   margin: 30px auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 6px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
-/* Inputs */
+/* -------- INPUTS -------- */
 textarea {
   width: 100%;
-  padding: 10px;
-  font-size: 14px;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;     /* 👈 ADD */
+  line-height: 1.6;
   resize: vertical;
 }
 
 input[type="file"] {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
+/* -------- BUTTONS -------- */
 button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background-color: #2563eb;
-  color: white;
+  background: #2563eb;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 15px;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 6px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 button:hover {
-  background-color: #1e40af;
+  background: #1e40af;
 }
 
-/* Output section */
-#output-section h3 {
-  margin-top: 25px;
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 5px;
+/* -------- TITLES -------- */
+h2 {
+  margin-bottom: 18px;
+  color: #111827;
+  font-size: 20px;      /* was default */
+  font-weight: 600;
 }
 
+h3 {
+  margin-bottom: 12px;
+  color: #1f2937;
+  font-size: 16.5px;    /* slightly larger */
+  font-weight: 600;
+}
+
+
+/* -------- LISTS -------- */
 ul {
-  margin-top: 10px;
-  padding-left: 20px;
+  list-style: none;
+  padding-left: 0;
 }
 
-li {
+ul li {
+  padding: 8px 12px;
   margin-bottom: 6px;
+  border-radius: 6px;
+  border-left: 3px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 14.5px;  
 }
 
-/* Readiness states */
+
+/* -------- RESULT HIGHLIGHTS -------- */
+#matchPercentage {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+small {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+
+
 #readiness p {
   font-weight: bold;
   font-size: 16px;
 }
 
-.ready {
-  color: green;
+/* -------- LINKS -------- */
+a {
+  color: #2563eb;
+  text-decoration: none;
 }
 
-.partial {
-  color: #d97706;
+a:hover {
+  text-decoration: underline;
 }
 
-.not-ready {
-  color: red;
+/* -------- PRINT (PDF) -------- */
+@media print {
+  button, a {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  section {
+    box-shadow: none;
+    margin: 0;
+  }
 }
 
-/* Small text */
-small {
+#output-section > div {
+  margin-bottom: 25px;
+}
+#output-section {
+  animation: fadeIn 0.4s ease-in;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+button {
+  transition: background 0.3s ease;
+}
+
+/* -------- FILE UPLOAD (CUSTOM) -------- */
+.file-upload {
+  margin-top: 10px;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px;
+  border: 2px dashed #c7d2fe;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.file-label:hover {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+
+.file-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.file-subtitle {
+  font-size: 13px;
   color: #6b7280;
 }
