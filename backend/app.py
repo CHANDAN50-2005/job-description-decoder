@@ -9,6 +9,24 @@ CORS(app)
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+# ---------------- SKILL EXTRACTION ----------------
+def extract_skills_from_text(text):
+    skills = [
+        "html", "css", "javascript", "react",
+        "python", "java", "sql", "git",
+        "flask", "django", "node", "express"
+    ]
+
+    found = []
+    text = text.lower()
+
+    for skill in skills:
+        if skill in text:
+            found.append(skill.upper())
+
+    return list(set(found))
+
+# ---------------- ANALYZE ROUTE ----------------
 @app.route("/analyze", methods=["POST"])
 def analyze():
     # Validate job description
@@ -16,7 +34,7 @@ def analyze():
     if not job_description:
         return jsonify({"error": "Job description is required"}), 400
 
-    # Validate resume file
+    # Validate resume
     if "resume_pdf" not in request.files:
         return jsonify({"error": "Resume PDF is required"}), 400
 
@@ -28,11 +46,11 @@ def analyze():
     if not resume_file.filename.lower().endswith(".pdf"):
         return jsonify({"error": "Only PDF resumes are supported"}), 400
 
-    # Save resume temporarily
+    # Save resume
     resume_path = os.path.join(UPLOAD_FOLDER, resume_file.filename)
     resume_file.save(resume_path)
 
-    # Extract text from PDF
+    # Extract resume text
     try:
         reader = PdfReader(resume_path)
         resume_text = ""
@@ -40,58 +58,60 @@ def analyze():
         for page in reader.pages:
             text = page.extract_text()
             if text:
-                resume_text += text + "\n"
+                resume_text += text + " "
 
         if not resume_text.strip():
             return jsonify({
                 "error": "Unable to read resume text. Please upload a text-based PDF."
             }), 400
 
-    except Exception as e:
-        return jsonify({
-            "error": "Error reading resume PDF"
-        }), 500
+    except Exception:
+        return jsonify({"error": "Error reading resume PDF"}), 500
 
-    # ---------------- MOCK AI LOGIC (SAFE MVP) ----------------
-    # This will be replaced by real AI later
+    # Skill extraction
+    job_skills = extract_skills_from_text(job_description)
+    resume_skills = extract_skills_from_text(resume_text)
+    
+    missing_skills = [skill for skill in job_skills if skill not in resume_skills]
 
-    job_must_have = ["HTML", "CSS", "JavaScript", "React"]
+    matched_skills = [skill for skill in job_skills if skill in resume_skills]
 
-    resume_skills_found = []
-    missing_skills = []
+    matched_count = len(matched_skills)
+    total_required = len(job_skills)
 
-    resume_text_lower = resume_text.lower()
+    match_percentage = 0
+    if total_required > 0:
+        match_percentage = int((matched_count / total_required) * 100)
 
-    for skill in job_must_have:
-        if skill.lower() in resume_text_lower:
-            resume_skills_found.append(skill)
-        else:
-            missing_skills.append(skill)
 
+    # ---------------- AI-LIKE REASONING ----------------
     if len(missing_skills) == 0:
         readiness = "Ready"
-        reason = "Your resume contains all the core skills required for this job."
-    elif len(resume_skills_found) >= 2:
+        reason = "Your resume strongly matches all required job skills."
+    elif len(missing_skills) <= 2:
         readiness = "Partially Ready"
-        reason = "Your resume matches some core skills, but improvements are needed."
+        reason = "Your resume matches most required skills but needs improvement."
     else:
         readiness = "Not Ready"
-        reason = "Most core skills required for this job are missing in the resume."
+        reason = "Your resume is missing several important skills required for this role."
 
-    response = {
+    suggestions = [f"Improve your knowledge in {skill}" for skill in missing_skills][:3]
+
+    # Final response
+    result = {
         "role": "Frontend Developer responsible for building user interfaces",
-        "job_must_have_skills": job_must_have,
-        "resume_matching_skills": resume_skills_found,
+        "job_must_have_skills": job_skills,
+        "resume_matching_skills": resume_skills,
         "missing_skills": missing_skills,
         "readiness": readiness,
         "reason": reason,
-        "suggestions": [
-            "Focus on improving missing skills",
-            "Build small projects related to this role"
-        ]
+        "suggestions": suggestions,
+        "match_percentage": match_percentage
+
     }
 
-    return jsonify(response)
+    return jsonify(result)
 
+# ---------------- RUN APP ----------------
 if __name__ == "__main__":
     app.run(debug=True)
