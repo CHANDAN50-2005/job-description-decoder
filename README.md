@@ -155,6 +155,19 @@ Built within an **8-hour Hackathon**, focusing on:
 
 ---
 
+## 👥 Team Details
+
+### Team Name  
+**Innov8ters**
+
+### Team Members
+- **Chandan Jaiwant Gouda**  
+- **Hotur Gargeya Datta**  
+- **Akash Darwan**  
+- **Chethan Kumar**
+
+---
+
 ## 📌 Conclusion
 
 This project bridges the gap between **job expectations** and **student preparedness**, helping users apply smarter — not blindly.
