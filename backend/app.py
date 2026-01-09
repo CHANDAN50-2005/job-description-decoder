@@ -12,9 +12,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # ---------------- SKILL EXTRACTION ----------------
 def extract_skills_from_text(text):
     skills = [
-        "html", "css", "javascript", "react",
+        "html", "css", "javascript", "react","C","C++",
         "python", "java", "sql", "git",
-        "flask", "django", "node", "express"
+        "flask", "django", "node", "express","Data Structures and Algorithms","DSA","Responsive Design","REST APIs","MySQL","PostgreSQL","MongoDB","Git","GitHub","GitHub / GitLab","Communication Skills","Problem-Solving","Cloud & DevOps","Backend Frameworks","Operating Systems & Networking","Team & Work Ethics","C / C++",
     ]
 
     found = []
